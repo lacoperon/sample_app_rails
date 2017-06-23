@@ -54,4 +54,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?, "shouldn't allow duplicate user"
   end
 
+  test "lowercase, uppercase and mixed case email addresses with same base\n
+    contents should be considered separate" do
+    @user.email = "USER@EXAMPLE.com"
+    @user.save
+    assert @user.email == "user@example.com"
+  end
 end
