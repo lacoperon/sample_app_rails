@@ -56,8 +56,9 @@ class UserTest < ActiveSupport::TestCase
 
   test "lowercase, uppercase and mixed case email addresses with same base\n
     contents should be considered separate" do
-    @user.email = "USER@EXAMPLE.com"
+    mixed_email = "USER@EXAMPLE.com"
+    @user.email = mixed_email
     @user.save
-    assert @user.email == "user@example.com"
+    assert @user.email == mixed_email.downcase!
   end
 end
